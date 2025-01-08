@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class UserService {
@@ -22,5 +23,15 @@ export class UserService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  login(body: LoginUserDto) {
+    const { email, password, roles } = body;
+
+    if (!email || !password) {
+      throw new Error('Invalid email or password');
+    }
+
+    return `This action logs a user in`;
   }
 }
